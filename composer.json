@@ -1,0 +1,25 @@
+{
+    "name": "infogram/infogram-php",
+    "version": "0.1.0",
+    "description": "PHP client for infogr.am API",
+    "keywords": ["infogram", "infogr.am"],
+    "authors": [
+        {
+            "name": "Mārtiņš Barinskis",
+            "email": "mb@infogr.am",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.3.*",
+        "mockery/mockery": "0.9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Infogram\\": "src/Infogram"
+        }
+    }
+}
