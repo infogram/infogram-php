@@ -40,7 +40,7 @@ class HttpTransport implements Transport
 
         if ($result === FALSE) {
             curl_close($cu);
-            throw new ErrorException('Could not execute cURL request: ' . $result);OB
+            throw new ErrorException('Could not execute cURL request: ' . $result);
         }
 
         $status = curl_getinfo($cu, CURLINFO_HTTP_CODE);
