@@ -21,7 +21,7 @@ class InfogramRequestTest extends \PHPUnit_Framework_TestCase
                 'title' => 'The Flintstones'));
         
         $transport = Mockery::mock('Infogram\Transport');
-        $transport->shouldReceive('send')->andReturn(new SimpleResponse($templates, array('Status' => '200')));
+        $transport->shouldReceive('send')->andReturn(new SimpleResponse($templates, array(), 200));
         
         $session = Mockery::mock('Infogram\InfogramSession');
         $session->shouldReceive('passThrough'); //noop
