@@ -15,7 +15,7 @@ class InfogramRequest extends SimpleRequest
     private $version;
 
     private $transport;
-    
+
     public function __construct(InfogramSession $session, $method, $path, $parameters = null, $baseUrl = null, $version = null, $transport = null)
     {
         $base = isset($baseUrl) ? $baseUrl : self::DEFAULT_BASE_URL;

@@ -8,13 +8,13 @@ class RequestSigningSession implements InfogramSession
     private $consumerKey;
 
     private $consumerSecret;
-    
+
     public function __construct($consumerKey, $consumerSecret)
     {
         $this->consumerKey = $consumerKey;
         $this->consumerSecret = $consumerSecret;
     }
-    
+
     public function passThrough(Request $request)
     {
         $params = $request->getParameters();

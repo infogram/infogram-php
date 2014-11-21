@@ -28,7 +28,7 @@ class BaseString
         }
         $parts []= self::percentEncode($paramPart);
 
-        return implode('&', $parts);       
+        return implode('&', $parts);
     }
 
     private static function percentEncode($in) {

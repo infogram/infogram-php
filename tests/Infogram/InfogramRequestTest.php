@@ -19,13 +19,13 @@ class InfogramRequestTest extends \PHPUnit_Framework_TestCase
             array(
                 'id' => 3,
                 'title' => 'The Flintstones'));
-        
+
         $transport = Mockery::mock('Infogram\Transport');
         $transport->shouldReceive('send')->andReturn(new SimpleResponse($templates, array(), 200));
-        
+
         $session = Mockery::mock('Infogram\InfogramSession');
         $session->shouldReceive('passThrough'); //noop
-        
+
         $request = new InfogramRequest($session, 'GET', 'themes', null, null, null, $transport);
         $response = $request->execute();
         $this->assertNotNull($response);
