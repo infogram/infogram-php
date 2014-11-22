@@ -8,13 +8,20 @@ class InfogramResponse extends SimpleResponse
 
     public function __construct(Response $parent)
     {
-        parent::__construct($parent->getBody(), $parent->getHeaders(), $parent->getStatus());
-        $status = $this->getStatus();
-        $this->ok = $status >= 200 && $status < 300;
+        $status = $parent->getStatus();
+        $ok = self::statusIsOK($status);
+        $bodyString = $parent->getBody();
+        parent::__construct($ok ? json_decode($bodyString) : $bodyString, $parent->getHeaders(), $status);
+        $this->ok = $ok;
     }
 
     function isOK()
     {
         return $this->ok;
+    }
+
+    private static function statusIsOK($status)
+    {
+        return $status >= 200 && $status < 300;
     }
 }

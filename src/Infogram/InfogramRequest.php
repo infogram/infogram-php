@@ -19,7 +19,8 @@ class InfogramRequest extends SimpleRequest
     public function __construct(InfogramSession $session, $method, $path, $parameters = null, $baseUrl = null, $version = null, $transport = null)
     {
         $base = isset($baseUrl) ? $baseUrl : self::DEFAULT_BASE_URL;
-        parent::__construct($method, $base . $path, isset($parameters) ? $parameters : array());
+        $convertedParams = isset($parameters) ? self::convertCompoundParametersToStringIfNeeded($parameters) : array();
+        parent::__construct($method, $base . $path, $convertedParams);
         $this->session = $session;
         $this->version = isset($version) ? $version : self::VERSION;
         $this->transport = isset($transport) ? $transport : new HttpTransport();
@@ -35,5 +36,24 @@ class InfogramRequest extends SimpleRequest
     public function getVersion()
     {
         return $this->version;
+    }
+
+    private static function convertCompoundParametersToStringIfNeeded($params)
+    {
+        $arr = array();
+        foreach ($params as $name => $value) {
+            if (is_scalar($value)) {
+                $arr[$name] = $value;
+            }
+            else {
+                if (is_array($value) || is_object($value)) {
+                    $arr[$name] = json_encode($value);
+                }
+                else {
+                    throw new \ErrorException('Array contains a non-serializable value with name "' . $name . '"');
+                }
+            }
+        }
+        return $arr;
     }
 }
