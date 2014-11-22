@@ -9,17 +9,8 @@ class InfogramRequestTest extends \PHPUnit_Framework_TestCase
 {
     public function testExecute_shouldSendAndReceiveResponse()
     {
-        $templates = array(
-            array(
-                'id' => 1,
-                'title' => 'The Simpsons'),
-            array(
-                'id' => 2,
-                'title' => 'The Jetsons'),
-            array(
-                'id' => 3,
-                'title' => 'The Flintstones'));
-
+        $templates = '[{ "id": 1, "title": "The Simpsons"  }, { "id": 2, "title": "The Jetsons" }, { "id": 3, "title" : "The Flintstones" }]';
+        
         $transport = Mockery::mock('Infogram\Transport');
         $transport->shouldReceive('send')->andReturn(new SimpleResponse($templates, array(), 200));
 
@@ -34,12 +25,12 @@ class InfogramRequestTest extends \PHPUnit_Framework_TestCase
         $body = $response->getBody();
         $this->assertTrue(is_array($body));
         $this->assertEquals(3, count($body));
-        $this->assertEquals(1, $body[0]['id']);
-        $this->assertEquals('The Simpsons', $body[0]['title']);
-        $this->assertEquals(2, $body[1]['id']);
-        $this->assertEquals('The Jetsons', $body[1]['title']);
-        $this->assertEquals(3, $body[2]['id']);
-        $this->assertEquals('The Flintstones', $body[2]['title']);
+        $this->assertEquals(1, $body[0]->id);
+        $this->assertEquals('The Simpsons', $body[0]->title);
+        $this->assertEquals(2, $body[1]->id);
+        $this->assertEquals('The Jetsons', $body[1]->title);
+        $this->assertEquals(3, $body[2]->id);
+        $this->assertEquals('The Flintstones', $body[2]->title);
     }
 
     public function testExecute_shouldSerializeNonScalarsToJSON()
