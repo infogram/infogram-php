@@ -16,7 +16,7 @@ class SimpleResponse implements Response
     {
         return $this->status;
     }
-    
+
     public function getBody()
     {
         return $this->body;

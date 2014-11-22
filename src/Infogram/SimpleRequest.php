@@ -11,7 +11,7 @@ class SimpleRequest implements Request
     private $parameters;
 
     private $version;
-    
+
     public function __construct($method, $url, $params) {
         $this->method = $method;
         $this->url = $url;

@@ -14,7 +14,7 @@ class RequestSigningSessionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('key', $params);
         $this->assertEquals('john', $params['key']);
-        
+
         $this->assertArrayHasKey('ig_sig', $params);
         $this->assertEquals('oXoqB1fJQwp/iV9rNBDqy/bqh/o=', $params['ig_sig']);
     }

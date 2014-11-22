@@ -6,4 +6,3 @@ interface Transport
 {
     public function send(Request $request);
 }
-
