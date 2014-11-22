@@ -8,7 +8,7 @@ class HttpTransport implements Transport
     {
         $cu = curl_init();
         if (!$cu) {
-            throw new ErrorException('Could not initialize cURL');
+            throw new \ErrorException('Could not initialize cURL');
         }
 
         $url = $request->getUrl();
