@@ -4,10 +4,17 @@ namespace Infogram;
 
 class HttpTransport implements Transport
 {
+
+    private $curl;
+    
+    public function __construct($curl = null)
+    {
+        $this->curl = $curl ? $curl : new DefaultCurl();
+    }
+    
     public function send(Request $request)
     {
-        $cu = curl_init();
-        if (!$cu) {
+        if (!$this->curl->init()) {
             throw new \ErrorException('Could not initialize cURL');
         }
 
@@ -19,7 +26,7 @@ class HttpTransport implements Transport
             if (!$first) {
                 $queryString .= '&';
             }
-            $queryString .= curl_escape($cu, $name) . '=' . curl_escape($cu, $value);
+            $queryString .= $this->curl->escape($name) . '=' . $this->curl->escape($value);
             $first = false;
         }
 
@@ -30,26 +37,26 @@ class HttpTransport implements Transport
                 $url .= '?' . $queryString;
             }
             else if ($method == 'POST' || $method == 'PUT') {
-                curl_setopt($cu, CURLOPT_POSTFIELDS, $queryString);
-                curl_setopt($cu, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+                $this->curl->setOption(CURLOPT_POSTFIELDS, $queryString);
+                $this->curl->setOption(CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
             }
         }
 
-        curl_setopt($cu, CURLOPT_URL, $url);
-        curl_setopt($cu, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($cu, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($cu, CURLOPT_HEADER, TRUE);
+        $this->curl->setOption(CURLOPT_URL, $url);
+        $this->curl->setOption(CURLOPT_CUSTOMREQUEST, $method);
+        $this->curl->setOption(CURLOPT_RETURNTRANSFER, TRUE);
+        $this->curl->setOption(CURLOPT_HEADER, TRUE);
 
-        $result = curl_exec($cu);
+        $result = $this->curl->exec();
         
         if ($result === FALSE) {
-            $error = curl_error($cu);
-            curl_close($cu);
+            $error = $this->curl->getError();
+            $this->curl->close();
             throw new \ErrorException('Could not execute cURL request: ' . $error);
         }
 
-        $status = curl_getinfo($cu, CURLINFO_HTTP_CODE);
-        curl_close($cu);
+        $status = $this->curl->getInfo(CURLINFO_HTTP_CODE);
+        $this->curl->close();
 
         $headersAndBody = explode("\r\n\r\n", $result, 2);
         $headers = array();
