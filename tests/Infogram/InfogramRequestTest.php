@@ -12,7 +12,7 @@ class InfogramRequestTest extends \PHPUnit_Framework_TestCase
         $templates = '[{ "id": 1, "title": "The Simpsons"  }, { "id": 2, "title": "The Jetsons" }, { "id": 3, "title" : "The Flintstones" }]';
         
         $transport = Mockery::mock('Infogram\Transport');
-        $transport->shouldReceive('send')->andReturn(new SimpleResponse($templates, array(), 200));
+        $transport->shouldReceive('send')->andReturn(new SimpleResponse($templates, array('Content-Type' => 'application/json'), 200));
 
         $session = Mockery::mock('Infogram\InfogramSession');
         $session->shouldReceive('passThrough'); //noop
