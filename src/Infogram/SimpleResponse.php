@@ -29,7 +29,11 @@ class SimpleResponse implements Response
 
     public function getHeader($name)
     {
-        return $this->headers[strtolower($name)];
+        $key = strtolower($name);
+        if (array_key_exists($key, $this->headers)) {
+            return $this->headers[$key];
+        }
+        return null;
     }
 
     public static function convertKeyNamesToLowerCase(&$arr)
