@@ -32,7 +32,7 @@ class HttpTransport implements Transport
 
         $method = $request->getMethod();
         
-        if (!empty(queryString)) {
+        if (!empty($queryString)) {
             if ($method == 'GET' || $method == 'DELETE') {
                 $url .= '?' . $queryString;
             }
