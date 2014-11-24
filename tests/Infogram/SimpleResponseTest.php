@@ -2,7 +2,7 @@
 
 use Infogram\SimpleResponse;
 
-class SimpleRequestTest extends \PHPUnit_Framework_TestCase
+class SimpleResponseTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct_shouldNormalizeHeaderNameCase()
     {
