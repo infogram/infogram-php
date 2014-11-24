@@ -43,10 +43,8 @@ class HttpTransportTest extends \PHPUnit_Framework_TestCase
     public function testSend_postRequest_shouldSetPostFieldsAndHeader()
     {
         $curl = Mockery::mock('Infogram\Curl');
-        //$curl = Mockery::mock(new DefaultCurl);
         $curl->shouldReceive('init')->andReturn(true);
         $curl->shouldReceive('close');
-        //$curl->shouldReceive('setOption');
         $curl->shouldReceive('escape')->andReturnUsing(function($input) {
             return rawurlencode($input);
         });
