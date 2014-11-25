@@ -4,6 +4,7 @@ namespace Infogram;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class HttpTransport implements Transport
 {
@@ -26,7 +27,19 @@ class HttpTransport implements Transport
         $requestOptions[$paramsKey] = $params;
         $httpRequest = $this->client->createRequest($request->getMethod(), $url, $requestOptions);
 
-        $httpResponse = $this->client->send($httpRequest);
+        $httpResponse = null;
+        try {
+            $httpResponse = $this->client->send($httpRequest);
+        }
+        catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                $httpResponse = $e->getResponse();
+            }
+        }
+
+        if (!$httpResponse) {
+            return null;
+        }
 
         $headers = array();
         foreach ($httpResponse->getHeaders() as $name => $value) {
