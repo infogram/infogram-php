@@ -34,6 +34,9 @@ $request = new InfogramRequest($session, 'GET', 'users/' . $userName  . '/infogr
 
 $response = $request->execute();
 
+if (! $response) {
+    die("Cannot connect to the server\n");
+}
 
 if (!$response->isOK()) {
     die("Could not execute request\n");

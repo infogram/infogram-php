@@ -60,6 +60,21 @@ class InfogramRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($arr[1] === 'five');
     }
 
+    public function testExecute_transportReturnsNull_returnNull()
+    {
+        $transport = Mockery::mock('Infogram\Transport');
+        $transport->shouldReceive('send')->andReturn(null);
+        
+        $session = Mockery::mock('Infogram\InfogramSession');
+        $session->shouldReceive('passThrough');
+
+        $request = new InfogramRequest($session, 'GET', 'something', array(), null, null, $transport);
+
+        $response = $request->execute();
+
+        $this->assertNull($response);
+    }
+
     public function tearDown()
     {
         Mockery::close();

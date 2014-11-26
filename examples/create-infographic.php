@@ -59,6 +59,10 @@ $request = new InfogramRequest($session, 'POST', 'infographics/', array('content
 
 $response = $request->execute();
 
+if (! $response) {
+    die("Could not connect to the server\n");
+}
+
 if (!$response->isOK()) {
     die('Could not execute request: ' . $response->getBody() . "\n");
 }

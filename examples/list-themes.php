@@ -29,6 +29,10 @@ $request = new InfogramRequest($session, 'GET', 'themes', null, $baseUrl);
 
 $response = $request->execute();
 
+if (! $response) {
+    die("Could not connect to the server\n");
+}
+
 if (!$response->isOK()) {
     die("Could not execute request\n");
 }

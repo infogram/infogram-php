@@ -30,6 +30,9 @@ class InfogramRequest extends SimpleRequest
     {
         $this->session->passThrough($this);
         $rawResponse = $this->transport->send($this);
+        if ($rawResponse == null) {
+            return null;
+        }
         return new InfogramResponse($rawResponse);
     }
 
