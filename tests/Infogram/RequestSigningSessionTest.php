@@ -12,11 +12,11 @@ class RequestSigningSessionTest extends \PHPUnit_Framework_TestCase
         $session->passThrough($request);
         $params = $request->getParameters();
 
-        $this->assertArrayHasKey('key', $params);
-        $this->assertEquals('john', $params['key']);
+        $this->assertArrayHasKey('api_key', $params);
+        $this->assertEquals('john', $params['api_key']);
 
-        $this->assertArrayHasKey('ig_sig', $params);
-        $this->assertEquals('oXoqB1fJQwp/iV9rNBDqy/bqh/o=', $params['ig_sig']);
+        $this->assertArrayHasKey('api_sig', $params);
+        $this->assertEquals('x38tTpTI9SN0T2XRWZ/S0y0SwDQ=', $params['api_sig']);
     }
 
     /**
@@ -25,7 +25,7 @@ class RequestSigningSessionTest extends \PHPUnit_Framework_TestCase
     public function testPassThrough_containsKeyParameter_shouldThrowException()
     {
         $session = new RequestSigningSession('john', 'passw0rd');
-        $request = new SimpleRequest('GET', 'http://somewhere.vvz/foo/bar', array('one' => 1, 'two' => 2, 'key' => 'value'));
+        $request = new SimpleRequest('GET', 'http://somewhere.vvz/foo/bar', array('one' => 1, 'two' => 2, 'api_key' => 'value'));
         $session->passThrough($request);
     }
 
@@ -35,7 +35,7 @@ class RequestSigningSessionTest extends \PHPUnit_Framework_TestCase
     public function testPassThrough_containsSignatureParameter_shouldThrowException()
     {
         $session = new RequestSigningSession('john', 'passw0rd');
-        $request = new SimpleRequest('GET', 'http://somewhere.vvz/foo/bar', array('one' => 1, 'two' => 2, 'ig_sig' => 'asdfqwer'));
+        $request = new SimpleRequest('GET', 'http://somewhere.vvz/foo/bar', array('one' => 1, 'two' => 2, 'api_sig' => 'asdfqwer'));
         $session->passThrough($request);
     }
 }
