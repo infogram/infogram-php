@@ -11,19 +11,10 @@ The recommended way to install Infogram-PHP is via [Composer](https://getcompose
 curl -sS https://getcomposer.org/installer | php
 ```
 
-* Add `infogram/infogram-php` repository to the `repositories` section of your project's `composer.json`:
-```json
-"repositories": [
-  {
-    "type": "git",
-    "url": "https://github.com/infogram/infogram-php"
-  }
-]
-```
 * Add the following dependency to the `require` section of your project's `composer.json`:
 ```json
 "require": {
-  "infogram/infogram": "dev-master"
+  "infogram/infogram": "1.0.*"
 }
 ```
 * Execute command line `composer update` in your project's root
