@@ -1,8 +1,9 @@
 {
-    "name": "infogram/infogram-php",
-    "version": "0.1.0",
-    "description": "PHP client for infogr.am API",
+    "name": "infogram/infogram",
+    "description": "PHP client for infogr.am REST API",
     "keywords": ["infogram", "infogr.am"],
+    "homepage": "https://github.com/infogram/infogram-php",
+    "licence": "MIT",
     "authors": [
         {
             "name": "Mārtiņš Barinskis",
