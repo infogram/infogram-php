@@ -42,7 +42,7 @@ $content = array(
     ),
     array(
         'type' => 'chart',
-        'chartType' => 'bar',
+        'chart_type' => 'bar',
         'data' => array(
             array(
                 array('apples', 'today', 'yesterday', 'd. bef. yesterday'),
@@ -55,7 +55,7 @@ $content = array(
 );
 
 $session = new RequestSigningSession($consumerKey, $consumerSecret);
-$request = new InfogramRequest($session, 'POST', 'infographics/', array('content' => $content, 'template' => 45), $baseUrl);
+$request = new InfogramRequest($session, 'POST', 'infographics/', array('content' => $content, 'theme_id' => 45), $baseUrl);
 
 $response = $request->execute();
 
