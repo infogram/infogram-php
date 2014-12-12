@@ -23,7 +23,7 @@ curl -sS https://getcomposer.org/installer | php
 * Add the following dependency to the `require` section of your project's `composer.json`:
 ```json
 "require": {
-  "infogram/infogram-php": "dev-master"
+  "infogram/infogram": "dev-master"
 }
 ```
 * Execute command line `composer update` in your project's root
