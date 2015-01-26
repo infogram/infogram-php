@@ -11,8 +11,8 @@ $options = getopt($shortopts, $longopts);
 if ((!array_key_exists('k', $options) && !array_key_exists('key', $options)) ||
      (!array_key_exists('s', $options) && !array_key_exists('secret', $options))) {
     die("Usage:\n" .
-        "php list-infographics.php -k <consumer key> -s <consumer secret>\n" .
-        "php list-infographics.php --key=<consumer key> --secret=<consumer secret>\n");
+        "php list-infographics.php -k <API key> -s <API secret>\n" .
+        "php list-infographics.php --key=<API key> --secret=<API secret>\n");
 }
 
 $consumerKey = array_key_exists('k', $options) ? $options['k'] : $options['key'];
@@ -38,7 +38,7 @@ $content = array(
     array(
         'type' => 'quote',
         'text' => 'God does not play dice',
-        'author' => 'Albert Einstein'    
+        'author' => 'Альберт Эйнштейн'
     ),
     array(
         'type' => 'chart',
@@ -55,7 +55,7 @@ $content = array(
 );
 
 $session = new RequestSigningSession($consumerKey, $consumerSecret);
-$request = new InfogramRequest($session, 'POST', 'infographics/', array('content' => $content, 'theme_id' => 45), $baseUrl);
+$request = new InfogramRequest($session, 'POST', 'infographics/', array('content' => $content, 'theme_id' => 32), $baseUrl);
 
 $response = $request->execute();
 

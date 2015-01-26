@@ -13,8 +13,8 @@ if ((!array_key_exists('k', $options) && !array_key_exists('key', $options)) ||
      (!array_key_exists('s', $options) && !array_key_exists('secret', $options)) ||
      (!array_key_exists('u', $options) && !array_key_exists('user', $options))) {
     die("Usage:\n" .
-        "php list-infographics.php -k <consumer key> -s <consumer secret> -u <user profile>\n" .
-        "php list-infographics.php --key=<consumer key> --secret=<consumer secret> --user=<user profile>\n");
+        "php list-infographics.php -k <API key> -s <API secret> -u <user profile>\n" .
+        "php list-infographics.php --key=<API key> --secret=<API secret> --user=<user profile>\n");
 }
 
 $consumerKey = array_key_exists('k', $options) ? $options['k'] : $options['key'];

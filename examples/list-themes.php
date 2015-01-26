@@ -10,7 +10,7 @@ $longopts = array('key:', 'secret:', 'base-url::');
 $options = getopt($shortopts, $longopts);
 
 if ((!array_key_exists('k', $options) && !array_key_exists('key', $options) || (!array_key_exists('s', $options) && !array_key_exists('secret', $options)))) {
-    die("Usage:\nphp list-themes.php -k <consumer key> -s <consumer secret>\nphp list-themes.php --key=<consumer key> --secret=<consumer secret>");
+    die("Usage:\nphp list-themes.php -k <API key> -s <API secret>\nphp list-themes.php --key=<API key> --secret=<API secret>");
 }
 
 $consumerKey = array_key_exists('k', $options) ? $options['k'] : $options['key'];
