@@ -20,7 +20,7 @@ curl -sS https://getcomposer.org/installer | php
 * Execute command line `composer update` in your project's root
 
 ### API Keys
-You're going to need API keys, the public key and the secret (or private) key, to be able to access infogr.am API service. To acquire those contact Infogr.am [sales team](https://infogr.am/pricing). Keep your secret key secret, don't send it to anyone and do not pass it to any service directly.
+You're going to need API keys, the public key and the secret (or private) key, to be able to access infogr.am API service. To find your keys, log in to Infogr.am, find the [account settings](https://infogr.am/app/#/settings) on the left panel and look for the API credentials. Keep your secret key secret, don't send it to anyone and do not pass it to any service directly.
 
 The public key is used to indentify the API account the code is accessing with and the secret key is used to sign every request, i.e., add additional parameter to the request query string or body.
 
