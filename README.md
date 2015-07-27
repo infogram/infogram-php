@@ -7,17 +7,18 @@ This library provides an API to create and update infographics on Infogr.am
 The recommended way to install Infogram-PHP is via [Composer](https://getcomposer.org/). Composer is a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you.
 
 ```shell
-#Install Composer
+# Install Composer
 curl -sS https://getcomposer.org/installer | php
 ```
 
-* Add the following dependency to the `require` section of your project's `composer.json`:
+Add the following dependency to the `require` section of your project's `composer.json`:
+
 ```json
 "require": {
   "infogram/infogram": "1.0.*"
 }
 ```
-* Execute command line `composer update` in your project's root
+Execute command line `composer update` in your project's root
 
 ### API Keys
 You're going to need API keys, the public key and the secret (or private) key, to be able to access infogr.am API service. To find your keys, log in to Infogr.am, find the [account settings](https://infogr.am/app/#/settings) on the left panel and look for the API credentials. Keep your secret key secret, don't send it to anyone and do not pass it to any service directly.

@@ -6,7 +6,7 @@ use Infogram\InfogramRequest;
 use Infogram\RequestSigningSession;
 
 $shortopts = 'k:s:u:b::';
-$longopts = array('key:', 'secret:','user:', 'base-url::');
+$longopts = array('key:', 'secret:', 'user:', 'base-url::');
 $options = getopt($shortopts, $longopts);
 
 if ((!array_key_exists('k', $options) && !array_key_exists('key', $options)) ||
