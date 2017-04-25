@@ -11,8 +11,8 @@ $options = getopt($shortopts, $longopts);
 if ((!array_key_exists('k', $options) && !array_key_exists('key', $options)) ||
      (!array_key_exists('s', $options) && !array_key_exists('secret', $options))) {
     die("Usage:\n" .
-        "php list-infographics.php -k <API key> -s <API secret>\n" .
-        "php list-infographics.php --key=<API key> --secret=<API secret>\n");
+        "php create-infographic.php -k <API key> -s <API secret>\n" .
+        "php create-infographic.php --key=<API key> --secret=<API secret>\n");
 }
 
 $consumerKey = array_key_exists('k', $options) ? $options['k'] : $options['key'];
