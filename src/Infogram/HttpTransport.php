@@ -2,7 +2,7 @@
 
 namespace Infogram;
 
-use WpOrg\Requests\Request;
+use WpOrg\Requests\Requests;
 
 class HttpTransport implements Transport
 {    
